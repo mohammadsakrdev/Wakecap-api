@@ -1,6 +1,6 @@
 const config = {
   app: {
-    port: parseInt(process.env.PORT, 0) || 3000
+    port: parseInt(process.env.PORT, 10) || 3000
   },
   db: {
     mongoURI: process.env.MONGO_URI
