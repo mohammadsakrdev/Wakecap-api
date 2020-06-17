@@ -72,4 +72,4 @@ typings/
 .cache
 
 # VScode directories
-.vscode
+.vscode/
