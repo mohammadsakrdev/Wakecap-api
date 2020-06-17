@@ -1,11 +1,5 @@
-/* eslint-disable no-useless-escape */
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 const uniqueValidator = require('mongoose-unique-validator');
-
-const config = require('../../../common/config/config');
-const roles = require('../../common/enum/roles');
 
 const { Schema } = mongoose;
 

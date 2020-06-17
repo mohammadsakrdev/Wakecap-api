@@ -1,4 +1,5 @@
 const { CREATED, BAD_REQUEST } = require('http-status-codes');
+const moment = require('moment-timezone');
 
 const asyncHandler = require('../../../common/middleware/async');
 const Site = require('../model');
@@ -18,11 +19,26 @@ module.exports = asyncHandler(async (req, res, next) => {
     totalInactiveHours
   } = req.body;
 
+  const UTCEquivalent = moment
+    .tz(timezone)
+    .set({
+      hour: 0,
+      minute: 0,
+      second: 0,
+      millisecond: 0
+    })
+    .utc()
+    .format('LT');
+
+  const offset = moment.tz(timezone).format('Z');
+
   await Site.create({
     clientId,
     name,
     location: { coordinates, type: 'Point' },
     timezone,
+    offset,
+    UTCEquivalent,
     startingHour,
     endingHour,
     lateThresholdHour,
@@ -31,7 +47,7 @@ module.exports = asyncHandler(async (req, res, next) => {
 
   return res.status(CREATED).json({
     success: true,
-    message: 'Vendor created successfully',
+    message: 'Site added successfully',
     data: null
   });
 });

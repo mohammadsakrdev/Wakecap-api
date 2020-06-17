@@ -6,11 +6,6 @@ const { addSchema } = require('./joi/validationSchemas');
 
 const router = express.Router();
 
-router.post(
-  '/',
-  isAuthorized(USER_ADD_ADMIN),
-  requestValidator(addSchema),
-  addController
-);
+router.post('/', requestValidator(addSchema), addController);
 
 module.exports = router;

@@ -9,7 +9,6 @@ const addSchema = {
     .keys({
       name: Joi.string().required(),
       phoneNumber: Joi.string().required(),
-      userName: Joi.string().required(),
       email: Joi.string()
         .email()
         .required()

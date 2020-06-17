@@ -14,10 +14,10 @@ const addSchema = {
         .length(2)
         .required(),
       timezone: Joi.string().required(),
-      startingHour: Joi.string().required(),
-      endingHour: Joi.string().required(),
-      lateThresholdHour: Joi.string().required(),
-      totalInactiveHours: Joi.string().required()
+      startingHour: Joi.number().required(),
+      endingHour: Joi.number().required(),
+      lateThresholdHour: Joi.number().required(),
+      totalInactiveHours: Joi.number().required()
     })
 };
 module.exports = {

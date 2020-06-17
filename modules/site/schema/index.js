@@ -1,11 +1,7 @@
 /* eslint-disable no-useless-escape */
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const uniqueValidator = require('mongoose-unique-validator');
 
-const config = require('../../../common/config/config');
-const roles = require('../../common/enum/roles');
+const uniqueValidator = require('mongoose-unique-validator');
 
 const { Schema } = mongoose;
 
@@ -32,7 +28,18 @@ const SiteSchema = new Schema(
     },
     // Used to manage the timing of the tracked workers against UTC
     timezone: {
-      type: Number
+      type: String,
+      required: true
+    },
+    // The offset value
+    offset: {
+      type: String,
+      required: true
+    },
+    // UTC time equivalent to timezone midnight
+    UTCEquivalent: {
+      type: String,
+      required: true
     },
     // Used to figure out the time the workers start their daily operation
     startingHour: {

@@ -6,6 +6,7 @@ const errorHandler = require('../middleware/errorHandler');
 const clientRoutes = require('../../modules/client/client.routes');
 const workerRoutes = require('../../modules/worker/worker.routes');
 const siteRoutes = require('../../modules/site/site.routes');
+const assetRoutes = require('../../modules/asset/asset.routes');
 
 /**
  * @function
@@ -19,6 +20,7 @@ module.exports = (app) => {
   app.use(`${config.baseUrl}/clients`, clientRoutes);
   app.use(`${config.baseUrl}/workers`, workerRoutes);
   app.use(`${config.baseUrl}/sites`, siteRoutes);
+  app.use(`${config.baseUrl}/assets`, assetRoutes);
 
   // Handling Not Found
   app.use(notFoundHandler);

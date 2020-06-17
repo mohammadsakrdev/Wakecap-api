@@ -1,8 +1,5 @@
 const initRoutes = require('./init-routes');
 const connectDB = require('./init-db');
-const notificationsSubscriber = require('../../modules/pubSub/notifications-subscriber');
-const { createQueue } = require('../utils/notificationQue');
-const notificationWorker = require('../utils/notificationWorker').start;
 
 /**
  * @function
@@ -13,7 +10,4 @@ const notificationWorker = require('../utils/notificationWorker').start;
 module.exports = (app) => {
   initRoutes(app);
   connectDB();
-  notificationsSubscriber();
-  createQueue();
-  notificationWorker();
 };
