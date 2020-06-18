@@ -1,6 +1,5 @@
-/* eslint-disable no-useless-escape */
 const mongoose = require('mongoose');
-
+const idValidator = require('mongoose-id-validator');
 const uniqueValidator = require('mongoose-unique-validator');
 
 const { Schema } = mongoose;
@@ -10,7 +9,11 @@ const SiteSchema = new Schema(
     clientId: {
       type: Schema.ObjectId,
       ref: 'Client',
-      autopopulate: { select: '_id name', maxDepth: 1 }
+      autopopulate: {
+        select: '_id name',
+        maxDepth: 1
+      },
+      index: true
     },
     name: {
       type: String,
@@ -65,6 +68,10 @@ const SiteSchema = new Schema(
 
 SiteSchema.plugin(uniqueValidator, {
   message: 'Error, expected {PATH} to be unique.'
+});
+
+SiteSchema.plugin(idValidator, {
+  message: 'Invalid ID value for {PATH}'
 });
 
 SiteSchema.plugin(require('mongoose-autopopulate'));

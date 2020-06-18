@@ -27,9 +27,17 @@ const app = express();
 app.use('/api/v0/explore', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Parse application/json
-app.use(bodyParser.json({ limit: '50mb' }));
+app.use(
+  bodyParser.json({
+    limit: '50mb'
+  })
+);
 // Parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(
+  bodyParser.urlencoded({
+    extended: false
+  })
+);
 // Used to enable CORS
 app.use(cors());
 // Protect against HTTP Parameter Pollution attacks

@@ -5,9 +5,13 @@ const docs = require('./docs');
 
 const swaggerDocs = {
   ...conf,
-  paths: { ...docs },
+  paths: {
+    ...docs
+  },
   components: {
-    schemas: { ...definitions },
+    schemas: {
+      ...definitions
+    },
     securitySchemes: {
       BearerAuth
     }

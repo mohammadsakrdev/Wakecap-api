@@ -8,6 +8,7 @@ const ClientSchema = new Schema(
     name: {
       type: String,
       unique: true,
+      index: true,
       required: [true, 'Please add a client name'],
       trim: true,
       maxlength: [100, 'Name should be less than 100 characters']

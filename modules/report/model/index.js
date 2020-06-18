@@ -16,6 +16,7 @@ class Report {
       .select(fields)
       .lean();
   }
+
   /**
    * @function
    * Saving one or more documents to the database.
@@ -48,7 +49,9 @@ class Report {
       .limit(limit)
       .skip(skip)
       .sort(sort)
-      .lean({ autopopulate: true });
+      .lean({
+        autopopulate: true
+      });
   }
 
   /**

@@ -31,7 +31,14 @@ module.exports = asyncHandler(async (req, res) => {
   });
 
   const [list, count] = await Promise.all([
-    Report.find(conditions, {}, { skip, limit }),
+    Report.find(
+      conditions,
+      {},
+      {
+        skip,
+        limit
+      }
+    ),
     Report.countDocuments(conditions)
   ]);
 

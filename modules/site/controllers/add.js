@@ -35,7 +35,10 @@ module.exports = asyncHandler(async (req, res, next) => {
   await Site.create({
     clientId,
     name,
-    location: { coordinates, type: 'Point' },
+    location: {
+      coordinates,
+      type: 'Point'
+    },
     timezone,
     offset,
     UTCEquivalent,

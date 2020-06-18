@@ -15,12 +15,18 @@ const WorkerSchema = new Schema(
     clientId: {
       type: Schema.ObjectId,
       ref: 'Client',
-      autopopulate: { select: '_id name', maxDepth: 1 }
+      autopopulate: {
+        select: '_id name',
+        maxDepth: 1
+      }
     },
     siteId: {
       type: Schema.ObjectId,
       ref: 'Site',
-      autopopulate: { select: '_id name', maxDepth: 1 }
+      autopopulate: {
+        select: '_id name',
+        maxDepth: 1
+      }
     }
   },
   {

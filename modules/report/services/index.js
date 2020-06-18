@@ -14,8 +14,9 @@ const Asset = require('../../asset/model');
  */
 async function _getSites() {
   const UTCEquivalent = moment().format('LT');
-  // TODO
-  const conditions = { UTCEquivalent: '7:00 AM' };
+  const conditions = {
+    UTCEquivalent
+  };
   const fields = {
     _id: 1,
     clientId: 1,
@@ -37,7 +38,13 @@ async function _getSites() {
 async function _getSiteActiveWorkers(siteId) {
   const start = new Date(moment().subtract(1, 'days'));
   const end = new Date();
-  const conditions = { siteId, createdAt: { $gte: start, $lte: end } };
+  const conditions = {
+    siteId,
+    createdAt: {
+      $gte: start,
+      $lte: end
+    }
+  };
   const field = 'workerId';
   return Asset.distinct(field, conditions);
 }
@@ -52,8 +59,15 @@ async function _getSiteActiveWorkers(siteId) {
  */
 async function _getAbsentSiteWorkers(siteId) {
   const activeWorkers = await _getSiteActiveWorkers(siteId);
-  const conditions = { siteId, _id: { $nin: activeWorkers } };
-  const fields = { _id: 1 };
+  const conditions = {
+    siteId,
+    _id: {
+      $nin: activeWorkers
+    }
+  };
+  const fields = {
+    _id: 1
+  };
   return Worker.find(conditions, fields);
 }
 
@@ -81,7 +95,10 @@ async function _getSiteLateWorkers(siteId, startingHour, lateThresholdHour) {
   const conditions = {
     duration: 0,
     siteId,
-    createdAt: { $gte: start, $lte: end }
+    createdAt: {
+      $gte: start,
+      $lte: end
+    }
   };
   const field = 'workerId';
   return Asset.distinct(field, conditions);
@@ -103,10 +120,20 @@ async function _getSiteWorkersTotalHours(siteId, isActive) {
       $match: {
         siteId,
         isActive,
-        createdAt: { $gte: start, $lte: end }
+        createdAt: {
+          $gte: start,
+          $lte: end
+        }
       }
     },
-    { $group: { _id: null, total: { $sum: '$duration' } } }
+    {
+      $group: {
+        _id: null,
+        total: {
+          $sum: '$duration'
+        }
+      }
+    }
   ];
   const result = await Asset.aggregate(aggregations);
   const totalHours = result.length

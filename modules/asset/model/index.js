@@ -16,6 +16,7 @@ class Asset {
       .select(fields)
       .lean();
   }
+
   /**
    * @function
    * Saving one or more documents to the database.

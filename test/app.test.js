@@ -1,14 +1,14 @@
-const mongoose = require('mongoose');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const app = require('../app');
-const should = chai.should();
 const faker = require('faker');
 const _ = require('lodash');
 
+const app = require('../app');
 const Client = require('../modules/client/model');
 const Site = require('../modules/site/model');
 const Worker = require('../modules/worker/model');
+
+const should = chai.should();
 
 const timeZones = [
   'America/Los_Angeles',
@@ -108,7 +108,10 @@ describe('Wakecap-api', () => {
             type: 'Point'
           },
           is_active,
-          duration: faker.random.number({ min: 50, max: 120 }),
+          duration: faker.random.number({
+            min: 50,
+            max: 120
+          }),
           worker_id
         };
         chai

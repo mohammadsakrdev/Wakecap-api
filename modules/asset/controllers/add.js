@@ -12,8 +12,14 @@ module.exports = asyncHandler(async (req, res, next) => {
   const { coordinates, is_active, duration, worker_id } = req.body;
 
   const worker = await Worker.findOne(
-    { _id: worker_id },
-    { _id: 1, clientId: 1, siteId: 1 }
+    {
+      _id: worker_id
+    },
+    {
+      _id: 1,
+      clientId: 1,
+      siteId: 1
+    }
   );
 
   if (!worker) {
