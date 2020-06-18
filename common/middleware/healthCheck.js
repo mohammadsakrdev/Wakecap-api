@@ -5,7 +5,7 @@ const { OK } = require('http-status-codes');
 const healthCheck = (req, res, next) => {
   return res.status(OK).json({
     success: true,
-    message: 'Notification service is up & running.',
+    message: 'Wake cap is up & running.',
     data: null
   });
 };

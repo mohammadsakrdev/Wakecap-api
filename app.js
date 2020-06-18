@@ -71,9 +71,7 @@ initApp(app);
 
 app.listen(config.app.port, () => {
   // eslint-disable-next-line no-console
-  console.log(
-    `Notifications service is up & running on port ${config.app.port}`
-  );
+  console.log(`Wake Cap is up & running on port ${config.app.port}`);
 });
 
 module.exports = app;

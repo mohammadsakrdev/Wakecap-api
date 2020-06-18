@@ -3,8 +3,8 @@ const { CREATED, BAD_REQUEST } = require('http-status-codes');
 const asyncHandler = require('../../../common/middleware/async');
 const Worker = require('../model');
 
-// @desc      Add vendor
-// @route     POST /api/v0/users/vendor
+// @desc      Add Worker
+// @route     POST /api/v0/workers
 // @access    Public
 module.exports = asyncHandler(async (req, res, next) => {
   const { name, clientId, siteId } = req.body;

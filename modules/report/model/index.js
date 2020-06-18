@@ -1,10 +1,10 @@
-const ClientSchema = require('../schema');
+const ReportSchema = require('../schema');
 
-/** Class representing a Client model. */
-class Client {
+/** Class representing a Report model. */
+class Report {
   /**
    * @function
-   * Finds one Client document
+   * Finds one Report document
    *
    * @param {Object} conditions - Specifies query conditions.
    * @param {Object} fields - Specifies which document fields to include or exclude.
@@ -12,7 +12,7 @@ class Client {
    * @returns {Promise<Object>} - Promise object represents the returned document.
    */
   static async findOne(conditions, fields = {}) {
-    return ClientSchema.findOne(conditions)
+    return ReportSchema.findOne(conditions)
       .select(fields)
       .lean();
   }
@@ -25,29 +25,43 @@ class Client {
    * @returns {Promise<Object>} - Promise object represents the created document.
    */
   static async create(docs) {
-    return ClientSchema.create(docs);
+    return ReportSchema.create(docs);
   }
 
   /**
    * @function
-   * Finds one Client document
+   * Finds one Report document
    *
    * @param {Object} conditions - Specifies query conditions.
    * @param {Object} fields - Specifies which document fields to include or exclude.
    * @param {Object} options - Options including limit, sort.
    * @param {Number} options.limit - Specifies the maximum number of documents the query will return.
+   * @param {Number} options.skip - Specifies the number of documents the query will skip.
    * @param {Object} options.sort - Specifies the sort order.
    *
    * @returns {Promise<Array<Object>>} - Promise object represents the returned documents list.
    */
   static async find(conditions = {}, fields = {}, options = {}) {
-    const { limit, sort } = options;
-    return ClientSchema.find(conditions)
+    const { limit, sort, skip } = options;
+    return ReportSchema.find(conditions)
       .select(fields)
       .limit(limit)
+      .skip(skip)
       .sort(sort)
-      .lean();
+      .lean({ autopopulate: true });
+  }
+
+  /**
+   * @function
+   * Counts number of documents matching criteria in a database collection.
+   *
+   * @param {Object} conditions - Specifies query conditions.
+   *
+   * @returns {Promise<Number>} - Promise object represents the number of documents.
+   */
+  static async countDocuments(conditions = {}) {
+    return ReportSchema.countDocuments(conditions);
   }
 }
 
-module.exports = Client;
+module.exports = Report;

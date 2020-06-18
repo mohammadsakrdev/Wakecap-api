@@ -7,13 +7,13 @@ module.exports = {
     contact: {
       name: 'API Support',
       url: 'http://www.wakecap.com/support',
-      email: 'support@wakecap.com',
+      email: 'support@wakecap.com'
     },
     license: {
       name: 'Apache 2.0',
-      url: 'https://www.apache.org/licenses/LICENSE-2.0.html',
+      url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
     },
-    version: '1.0',
+    version: '1.0'
   },
   servers: [
     {
@@ -22,9 +22,9 @@ module.exports = {
       variables: {
         protocol: {
           enum: ['http'],
-          default: 'http',
-        },
-      },
+          default: 'http'
+        }
+      }
     },
     {
       url: '{protocol}://wakecap.com/api/v0',
@@ -32,10 +32,26 @@ module.exports = {
       variables: {
         protocol: {
           enum: ['http'],
-          default: 'http',
-        },
-      },
-    },
+          default: 'http'
+        }
+      }
+    }
   ],
-  tags: [],
+  tags: [
+    {
+      name: 'Client'
+    },
+    {
+      name: 'Site'
+    },
+    {
+      name: 'Worker'
+    },
+    {
+      name: 'Asset'
+    },
+    {
+      name: 'Report'
+    }
+  ]
 };

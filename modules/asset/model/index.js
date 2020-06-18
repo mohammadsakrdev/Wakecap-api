@@ -40,13 +40,36 @@ class Asset {
    *
    * @returns {Promise<Array<Object>>} - Promise object represents the returned documents list.
    */
-  static async find(conditions, fields = {}, options = {}) {
+  static async find(conditions = {}, fields = {}, options = {}) {
     const { limit, sort } = options;
     return AssetSchema.find(conditions)
       .select(fields)
       .limit(limit)
       .sort(sort)
       .lean();
+  }
+
+  /**
+   * @function
+   * Finds one Asset document
+   *@param {String} field - Specifies which field.
+   * @param {Object} conditions - Specifies query conditions.
+   *
+   * @returns {Promise<Array<Object>>} - Promise object represents the returned documents list.
+   */
+  static async distinct(field, conditions = {}) {
+    return AssetSchema.distinct(field, conditions).lean();
+  }
+
+  /**
+   * @function
+   * Performs aggregations on the models collection.
+   *@param {String} aggregations - pipeline operator(s) or operator array.
+   *
+   * @returns {Promise<Array<Object>>} - Promise object represents the aggregations result.
+   */
+  static async aggregate(aggregations) {
+    return AssetSchema.aggregate(aggregations);
   }
 }
 

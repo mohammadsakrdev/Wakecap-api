@@ -7,6 +7,7 @@ const clientRoutes = require('../../modules/client/client.routes');
 const workerRoutes = require('../../modules/worker/worker.routes');
 const siteRoutes = require('../../modules/site/site.routes');
 const assetRoutes = require('../../modules/asset/asset.routes');
+const reportsRoutes = require('../../modules/report/report.routes');
 
 /**
  * @function
@@ -21,6 +22,7 @@ module.exports = (app) => {
   app.use(`${config.baseUrl}/workers`, workerRoutes);
   app.use(`${config.baseUrl}/sites`, siteRoutes);
   app.use(`${config.baseUrl}/assets`, assetRoutes);
+  app.use(`${config.baseUrl}/reports`, reportsRoutes);
 
   // Handling Not Found
   app.use(notFoundHandler);

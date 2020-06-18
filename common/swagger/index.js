@@ -1,6 +1,6 @@
 const conf = require('./swagger-conf');
 const definitions = require('./definitions');
-const security = require('./security-schemes');
+const { BearerAuth } = require('./security-schemes');
 const docs = require('./docs');
 
 const swaggerDocs = {
@@ -8,7 +8,9 @@ const swaggerDocs = {
   paths: { ...docs },
   components: {
     schemas: { ...definitions },
-    securitySchemes: { ...security }
+    securitySchemes: {
+      BearerAuth
+    }
   }
 };
 module.exports = swaggerDocs;

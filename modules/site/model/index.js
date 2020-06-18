@@ -40,7 +40,7 @@ class Site {
    *
    * @returns {Promise<Array<Object>>} - Promise object represents the returned documents list.
    */
-  static async find(conditions, fields = {}, options = {}) {
+  static async find(conditions = {}, fields = {}, options = {}) {
     const { limit, sort } = options;
     return SiteSchema.find(conditions)
       .select(fields)
