@@ -92,6 +92,8 @@ async function _getSiteLateWorkers(siteId, startingHour, lateThresholdHour) {
       })
   );
   const end = new Date();
+
+  // Find the first log after the threshold hour with duration 0 indicating the arrival of the worker
   const conditions = {
     duration: 0,
     siteId,
